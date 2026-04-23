@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Payment Gateway</title>
+<style>
+body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#eef2f7,#dbeafe);margin:0;padding:0}
+.container{max-width:700px;margin:40px auto;background:#fff;padding:30px;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+h1{text-align:center;color:#2563eb;margin-bottom:10px}
+.subtitle{text-align:center;color:#666;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{border:1px solid #e5e7eb;border-radius:14px;padding:18px}
+.card h2{margin-top:0;font-size:20px;color:#111827}
+label{display:block;margin-top:12px;font-weight:bold}
+input,select{width:100%;padding:10px;margin-top:6px;border:1px solid #d1d5db;border-radius:8px;box-sizing:border-box}
+button{margin-top:20px;width:100%;padding:12px;background:#2563eb;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer}
+button:hover{background:#1d4ed8}
+.methods{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.method{padding:12px;border:1px solid #d1d5db;border-radius:10px;text-align:center;font-weight:bold;background:#f9fafb}
+.qr{display:flex;justify-content:center;align-items:center;height:220px;border:1px dashed #cbd5e1;border-radius:12px;background:#f8fafc;font-size:14px;color:#555;text-align:center;padding:10px}
+.secure{text-align:center;color:#16a34a;margin-top:15px;font-size:14px}
+a{display:block;text-align:center;margin-top:18px;color:#2563eb;text-decoration:none}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Secure Payment</h1>
+<div class="subtitle">Complete your course booking safely</div><div style="background:#eff6ff;border:1px solid #bfdbfe;padding:15px;border-radius:12px;margin-bottom:20px;"><h3 style="margin:0;color:#1d4ed8;">Course Payment Details</h3><p style="margin:8px 0 0;"><strong>Course Name:</strong> <span id="courseName"></span></p><p style="margin:5px 0 0;"><strong>Price:</strong> ₹<span id="coursePrice"></span></p></div>
+<div class="grid">
+<div class="card">
+<h2>UPI Payment</h2>
+<div class="qr"><img src="images/my qr.jpg" alt="UPI QR Code" style="max-width:100%;max-height:100%;border-radius:10px;"></div>
+<div class="methods">
+<div class="method">Google Pay</div>
+<div class="method">PhonePe</div>
+<div class="method">Paytm</div>
+<div class="method">BHIM UPI</div>
+</div>
+<label for="upi">Enter UPI ID</label>
+<input type="text" id="upi" placeholder="example@upi">
+<button onclick="payUPI()">Pay via UPI</button>
+</div>
+<div class="card">
+<h2>Card Payment</h2>
+<form onsubmit="payNow(event)">
+<label>Card Holder Name</label>
+<input type="text" required>
+<label>Card Number</label>
+<input type="text" maxlength="16" required>
+<label>Expiry</label>
+<input type="month" required>
+<label>CVV</label>
+<input type="password" maxlength="3" required>
+<button type="submit">Pay Now</button>
+</form>
+</div>
+</div>
+<div class="secure">🔒 100% Secure Payment Gateway</div>
+<a href="book.html">← Back to Booking</a>
+</div>
+<script>
+const params=new URLSearchParams(window.location.search);
+const cname=params.get('course')||'Web Development Course';
+const cprice=params.get('price')||'300';
+document.addEventListener('DOMContentLoaded',()=>{document.getElementById('courseName').textContent=cname;document.getElementById('coursePrice').textContent=cprice;});
+
+function payNow(e){e.preventDefault();alert('Payment Successful! Course booked successfully.');window.location.href='courses.html';}
+function payUPI(){alert('UPI Payment Successful! Course booked successfully.');window.location.href='courses.html';}
+</script>
+</body>
+</html>

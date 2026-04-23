@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Course</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f4f6f8;margin:0;padding:0}
+.container{max-width:650px;margin:40px auto;background:#fff;padding:30px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+h1{text-align:center;color:#3498db;margin-top:0}
+.details{background:#eff6ff;border:1px solid #bfdbfe;padding:15px;border-radius:10px;margin-bottom:20px}
+label{display:block;margin-top:15px;font-weight:bold}
+input,select,textarea{width:100%;padding:10px;margin-top:6px;border:1px solid #ccc;border-radius:8px;box-sizing:border-box}
+button{margin-top:20px;width:100%;padding:12px;background:#3498db;color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer}
+button:hover{background:#217dbb}
+a{display:block;text-align:center;margin-top:15px;color:#3498db;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Book Your Course</h1>
+<div class="details">
+<p><strong>Selected Course:</strong> <span id="courseName"></span></p>
+<p><strong>Price:</strong> ₹<span id="coursePrice"></span></p>
+</div>
+<form onsubmit="submitBooking(event)">
+<label>Full Name</label>
+<input type="text" required>
+<label>Email</label>
+<input type="email" required>
+<label>Phone Number</label>
+<input type="tel" required>
+<label>Select Course</label>
+<select id="course" required>
+<option>Web Development Course</option>
+<option>Advanced Web Development Course</option>
+<option>Data Science Course</option>
+<option>Advanced Data Science Course</option>
+<option>Graphic Design Course</option>
+<option>Advanced Graphic Design Course</option>
+</select>
+<label>Message</label>
+<textarea rows="4" placeholder="Any special request"></textarea>
+<button type="submit">Submit Booking</button>
+</form>
+<a href="courses.html">← Back to Courses</a>
+</div>
+<script>
+const params=new URLSearchParams(window.location.search);
+const prices={
+'Web Development Course':'300',
+'Advanced Web Development Course':'600',
+'Data Science Course':'500',
+'Advanced Data Science Course':'1000',
+'Graphic Design Course':'400',
+'Advanced Graphic Design Course':'800'
+};
+function updateDetails(){
+const course=document.getElementById('course').value;
+document.getElementById('courseName').textContent=course;
+document.getElementById('coursePrice').textContent=prices[course];
+}
+document.addEventListener('DOMContentLoaded',()=>{
+const course=params.get('course')||'Web Development Course';
+document.getElementById('course').value=course;
+updateDetails();
+document.getElementById('course').addEventListener('change',updateDetails);
+});
+function submitBooking(e){
+e.preventDefault();
+alert('Your course booking has been submitted successfully!');
+const course=document.getElementById('course').value;
+const price=prices[course];
+window.location.href='payment.html?course='+encodeURIComponent(course)+'&price='+price;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title> Contact Us </title>
+        <style>
+            * {
+              box-sizing: border-box;
+              background-color: bisque;
+            }
+            
+            .column {
+              float: left;
+              width: 33.33%;
+              padding: 5px;
+            }
+            
+            /* Clearfix (clear floats) */
+            .row::after {
+              content: "";
+              clear: both;
+              display: table;
+            }
+            </style>
+    </head>
+    <body>
+
+            <h3 class="w3-center">CONTACT</h3>
+            <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
+            <div style="margin-top:48px">
+              <p><i class="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i> Town Hall Rd, Sadar Bazar, Shahjahanpur, Uttar Pradesh 242001, India</p>
+              <p><i class="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> Phone: 8881955656</p>
+              <p><i class="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"> </i> Email: sikkav9@gmail.com</p>
+              <br>
+              <form onsubmit="validate()" target="_blank">
+                <p><input class="w3-input w3-border" type="text" placeholder="Name" required name="Name"></p>
+                <p><input class="w3-input w3-border" type="text" placeholder="Email" required name="Email"></p>
+                <p><input class="w3-input w3-border" type="text" placeholder="Subject" required name="Subject"></p>
+                <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
+                <p>
+                  <button class="w3-button w3-black" type="submit">
+                    <i class="fa fa-paper-plane"></i> SEND MESSAGE
+                  </button>
+                </p>
+              </form>
+              <script>
+                function validate(){
+                    window.alert('Your feedback is sumitted');
+                }
+            </script>
+             </div>
+                                  
+    </body>
+</html>
